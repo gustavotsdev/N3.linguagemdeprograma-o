@@ -1,0 +1,20 @@
+mermaid
+flowchart TD
+    A([Início]) --> B[Iniciar a WEB API]
+    B --> C[Receber requisição]
+    C --> D{Qual operação?}
+    D -->|Cadastro| E[Cadastrar usuário]
+    D -->|Login| F[Validar usuário e senha]
+    F --> G{Dados válidos?}
+    G -->|Não| H[Retornar erro]
+    G -->|Sim| I[Gerar token JWT]
+    D -->|Outras operações| J[Verificar token]
+    I --> K[Retornar resposta]
+    J --> L{Token válido?}
+    L -->|Não| H
+    L -->|Sim| M[Executar módulo solicitado]
+    M --> N[Consultar ou atualizar dados]
+    E --> K
+    N --> K
+    H --> O([Fim da requisição])
+    K --> O
